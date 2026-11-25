@@ -1,0 +1,21 @@
+dire il formato del nome e cognome valido
+
+// impostare input limite di spesa e saldo a number --> DONE
+
+aggiustare il controllo sulla data per uniformarsi a quello frontend --> Doing
+
+uniformare gli errori (categorie, metodi di pagamento,)
+
+controllo sugli abbonamenti con stesso nome
+
+// modificare input creazione/modifica abbonamento --> Done
+
+// controllo sul cancellare un abbonamento --> Done
+
+clean della sessione quando il messaggio è stato visualizzato
+
+// mettere i popup di eliminazione di un abbonamento nella schermata giusta --> Done
+
+// popup conferma cancellazione metodo di pagamento mancante --> Done
+
+// popup conferma cancellazione categoria mancante --> Done

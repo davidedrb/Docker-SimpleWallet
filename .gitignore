@@ -1,0 +1,17 @@
+/cache/
+/config/development/
+
+vendor/
+
+.idea/
+
+.env
+
+SimpleWallet/5_Applicativo/qodana.yaml
+SimpleWallet/5_Applicativo/.phpunit.result.cache
+
+*.cache
+
+.old/
+
+*.zip

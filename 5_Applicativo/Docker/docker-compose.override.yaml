@@ -1,0 +1,15 @@
+# Caricato automaticamente da "docker compose up" insieme a docker-compose.yaml.
+# In produzione: docker compose -f docker-compose.yaml up -d   (ignora questo file)
+services:
+  db:
+    ports:
+      - "127.0.0.1:3306:3306"   # raggiungibile solo dal tuo PC, non dalla rete
+
+  web:
+    build:
+      args:
+        PHP_INI: development     # mostra gli errori PHP a schermo
+    volumes:
+      - ../:/var/www/html        # live reload del codice
+      - /var/www/html/vendor     # mantiene il vendor dell'immagine
+                                 # dopo un cambio di composer.json: docker compose up --build -V

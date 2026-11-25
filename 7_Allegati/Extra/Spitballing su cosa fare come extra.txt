@@ -1,0 +1,47 @@
+COSA FARE [SP]:
+
+1. Icone x link + favicon.			[5]
+
+2. Sistemare la posizione del footer		[8]
+
+3. Dark Mode del sito.				[21]
+
+4. Cestino dove recuperare dati soft-deletati	[34]
+// funzioni di ripristino + cancellazione permanente
+// soft delete ai pagamenti
+// admin-exclusive
+
+5.  Pagina Grafici				[55]
+5.1 Storico pagamenti tramite lineare + sbarra rossa limite mensile
+5.2 torta x utilizzo metodi di pagamento (nome e %)
+
+6. Containerizzazione tramite docker		[144]
+
+7. Filtro x importo: 1 valore MIN e 1 valore MAX numerici (se c'è solo)	[21]
+// data anche con min e max
+// Risistemare data transazione che mostra la stessa struttura della data che fa il resto del sito "yyyy-MM-dd" non "dd.MM.yyyy"
+// Sistemare bottone Filtra (fare in modo che la pagina non si aggiorna subito, ma che l'utente deve cliccare il bottone per far partire i filtri)
+
+8. Esportazione estratto conto.			[55]
+// Mensile / Annuale + filtri, PDF
+
+
+9. unit test per controllare se un pagamento con data nel passato abbia stato come "effettuato";
+
+10. soft delete per l'utente
+
+11. modernizzazione alert
+
+12. mettere limite sui caratteri in generale (niente robe come millioni di caratteri senza senso)
+
+13. amministratore che visualizza tutto (+ cestino)
+
+-----------------------------------
+purgatorio delle task:
+
+
+- Allerte su email
+PUNTI: da testare se funziona a scuola
+
+- Budget massimo x categoria (non solo uno totale)
+PUNTI: boh se abbiamo voglia alla fine (molto improbabile)

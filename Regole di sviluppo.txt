@@ -1,0 +1,9 @@
+Regole di sviluppo:
+-------------------
+
+
+1. Prima di creare del codice controllare prima se qualcosa di simile non sia già creato altrove.
+2. Commentare il codice della funzione se non è di facile comprensione.
+3. Non mettere il codice in posti casuali, ma dove ha effettivamente senso metterlo.
+4. Accusare prima se stessi e dopo gli altri se qualcosa non funziona.
+5. Quando sei in difficoltà PRIMA chiedi ai compagni, DOPO alle AI.

@@ -1,0 +1,25 @@
+@startuml
+
+rectangle "Metodi Di Pagamento" as payment_methods
+rectangle "Categorie" as categories
+rectangle "Home" as home
+rectangle "Storico" as archive
+rectangle "Accedi" as login
+rectangle "Registrazione" as signin
+rectangle "Abbonamenti" as subscription
+rectangle "Account" as account
+rectangle "Disconnessione" as logout
+rectangle "Menu" as menu
+
+logout <-- menu
+menu <--> home
+menu <--> payment_methods
+menu <--> categories
+menu <--> archive
+menu <--> subscription
+menu <--> account
+home <-- login
+home <-- signin
+login <--> signin
+
+@enduml

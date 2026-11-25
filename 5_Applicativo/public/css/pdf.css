@@ -1,0 +1,133 @@
+.pdf-body {
+    font-family: DejaVu Sans, sans-serif;
+    font-size: 10px;
+    color: #333;
+}
+
+.pdf-header {
+    border-bottom: 2px solid #333;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+}
+
+.pdf-title {
+    font-size: 22px;
+    margin: 0 0 12px;
+}
+
+.pdf-user-info,
+.pdf-period {
+    font-size: 11px;
+    margin-top: 6px;
+}
+
+.pdf-label {
+    font-weight: bold;
+}
+
+.pdf-user-name {
+    font-weight: normal;
+}
+
+.pdf-period {
+    color: #666;
+}
+
+/* Contenuto */
+.pdf-content {
+    width: 100%;
+}
+
+.pdf-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.pdf-table-header th {
+    background-color: #333;
+    color: white;
+    padding: 8px 5px;
+    text-align: left;
+    font-size: 9px;
+}
+
+.pdf-table-body td {
+    border-bottom: 1px solid #ddd;
+    padding: 7px 5px;
+    font-size: 9px;
+}
+
+.pdf-table-row {
+    page-break-inside: avoid;
+}
+
+.pdf-text-right,
+.pdf-amount,
+.pdf-balance,
+.pdf-total-amount,
+.pdf-total-balance {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.pdf-income {
+    color: #198754;
+}
+
+.pdf-expense {
+    color: #dc3545;
+}
+
+.pdf-empty-message {
+    text-align: center;
+    padding: 20px;
+    color: #777;
+}
+
+/* Totali */
+.pdf-total-row {
+    background-color: #eee;
+    font-weight: bold;
+}
+
+.pdf-total-row td {
+    border-top: 2px solid #333;
+    padding: 10px 5px;
+}
+
+.pdf-total-label {
+    text-align: left;
+}
+
+/* Riepilogo */
+.pdf-summary {
+    margin-top: 25px;
+    text-align: right;
+    font-size: 11px;
+}
+
+.pdf-summary-item {
+    margin-bottom: 6px;
+}
+
+.pdf-summary-label {
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.pdf-summary-value {
+    display: inline-block;
+    min-width: 100px;
+}
+
+/* Footer */
+.pdf-footer {
+    position: fixed;
+    bottom: -20px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 8px;
+    color: #777;
+}

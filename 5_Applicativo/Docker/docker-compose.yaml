@@ -1,0 +1,61 @@
+name: simplewallet
+
+services:
+  db:
+    build:
+      context: ../..                                  # radice del repo
+      dockerfile: 5_Applicativo/Docker/db/Dockerfile.db
+    #image: simplewallet-db          # versione fissata (LTS), non "latest"
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "${DB_PORT}:3306"
+    # performance_schema OFF: risparmia parecchia RAM, utile in sviluppo/piccoli deploy
+    command: ["--performance-schema=OFF"]
+    volumes:
+      - mysql-data:/var/lib/mysql
+      #- ../../6_Database/DatabaseSQL:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      # 127.0.0.1 (TCP) e non "localhost" (socket): durante l'init di MySQL il server
+      # temporaneo risponde solo via socket, quindi con localhost risulti "healthy" troppo presto
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p\"$$MYSQL_ROOT_PASSWORD\" --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  web:
+    build:
+      context: ..
+      dockerfile: Docker/app/Dockerfile   # deve coincidere ESATTAMENTE con il nome del file su disco
+    restart: unless-stopped
+    ports:
+      - "${WEB_PORT}:80"
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - ../.env:/var/www/html/.env:ro
+    depends_on:
+      db:
+        condition: service_healthy
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  mysql-data:

@@ -1,0 +1,34 @@
+# syntax=docker/dockerfile:1
+ARG PHP_VERSION=8.5
+
+# ---------- Stage 1: dipendenze Composer (non finisce nell'immagine finale) ----------
+FROM composer:2 AS vendor
+WORKDIR /app
+
+COPY composer.json composer.lock* ./
+# --ignore-platform-reqs: in questo stage non ci sono le estensioni PHP dell'immagine finale
+RUN --mount=type=cache,target=/tmp/cache \
+    composer install --no-interaction --prefer-dist --no-dev \
+        --no-scripts --no-autoloader --ignore-platform-reqs
+
+COPY . .
+RUN composer dump-autoload --optimize --no-dev
+
+# ---------- Stage 2: immagine finale (solo runtime) ----------
+FROM php:${PHP_VERSION}-apache
+
+# production (default) oppure development (impostato dall'override di sviluppo)
+ARG PHP_INI=production
+
+# "pdo" è già compilato nell'immagine base: serve solo pdo_mysql
+RUN docker-php-ext-install pdo_mysql \
+    && a2enmod rewrite \
+    && sed -ri '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf \
+    && mv "$PHP_INI_DIR/php.ini-${PHP_INI}" "$PHP_INI_DIR/php.ini" \
+    # i php.ini ufficiali impostano variables_order="GPCS": $_ENV resterebbe vuoto
+    && printf 'variables_order = "EGPCS"\n' > "$PHP_INI_DIR/conf.d/zz-env.ini"
+
+WORKDIR /var/www/html
+COPY --from=vendor /app ./
+
+EXPOSE 80

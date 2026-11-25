@@ -1,0 +1,27 @@
+# Evita che MultiViews interferisca con i controller (es. controller "index" + file con lo stesso nome)
+Options -MultiViews
+# Niente elenco dei file nelle directory
+Options -Indexes
+
+RewriteEngine On
+
+# ---------------------------------------------------------------
+# SICUREZZA: DocumentRoot = root del progetto, quindi senza queste
+# regole file come /.env o /composer.json sarebbero scaricabili.
+# Vanno PRIMA delle regole di front controller.
+# ---------------------------------------------------------------
+# cartelle che non devono mai essere raggiunte via HTTP
+RewriteRule ^(application|vendor|Docker)(/|$) - [F,L]
+# file nascosti (.env, .git, .htaccess, ...) tranne .well-known
+RewriteRule (^|/)\.(?!well-known) - [F,L]
+# file di configurazione/progetto nella root
+RewriteRule ^(composer\.(json|lock)|phpunit\.xml|qodana\.yaml)$ - [F,L]
+
+# ---------------------------------------------------------------
+# Front controller: tutto ciò che non è file/cartella/link
+# viene passato a index.php?url=<percorso>
+# ---------------------------------------------------------------
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]

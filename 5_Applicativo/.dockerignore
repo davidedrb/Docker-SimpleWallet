@@ -1,0 +1,13 @@
+.git
+.gitignore
+.env
+.env.*
+.idea
+.vscode
+vendor
+node_modules
+Docker
+application/tests
+phpunit.xml
+qodana.yaml
+*.md

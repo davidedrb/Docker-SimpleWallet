@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="application/tests/bootstrap.php" colors="true">
+
+    <!--
+    <php>
+        <const name="HOST" value="127.0.0.1"/>
+        <const name="DATABASE" value="simplewallet"/>
+        <const name="USERNAME" value="root"/>
+        <const name="PASSWORD" value=""/>
+        <const name="PORT" value="3306"/>
+    </php>
+    -->
+
+    <testsuites>
+        <testsuite name="Controllers">
+            <directory suffix="Test.php">application/tests</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
